@@ -7,7 +7,7 @@ export function startApp() {
 
   setupRoutes(app);
 
-  app.listen(3000, 'localhost');
+  app.listen(3000, '0.0.0.0');
 
   console.log('Listening on %s:%s', 'localhost', '3000');
 }

@@ -2,9 +2,11 @@
   "name": "note_api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "./src/index.ts",
   "scripts": {
-    "start": "nodemon ./src/index.ts",
+    "start:dev": "nodemon",
+    "start:prod": "npm run build && node ./build/index.js",
+    "build": "tsc --build src/tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -1,0 +1,35 @@
+version: '3.5'
+networks:
+  note_world:
+    name: note_world
+    driver: bridge
+
+services:
+  note_api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ./:/note_api/
+      - /note_api/node_modules
+      - ./docker/development.env:/note_api/.env
+    ports:
+      - "3001:3000"
+    networks:
+      - note_world
+    command: npm run --prefix /note_api start:dev
+
+  note_db:
+    image: postgres
+    restart: always
+    volumes:
+      - ./data/psql:/var/lib/postgresql/data
+    environment:
+      PGUSER: recastmedia
+      PGPASSWORD: recastmedia
+      POSTGRES_DB: partner_db
+      POSTGRES_USER: recastmedia
+      POSTGRES_PASSWORD: recastmedia
+      POSTGRES_HOST_AUTH_METHOD: trust
+    networks:
+        - note_world
