@@ -14,7 +14,7 @@ describe('Component test healthCheck', () => {
     const response = await request.get(url);
 
     // THEN
-    expectResponse(response).toBeSuccess(201);
+    expectResponse(response).toBeSuccess(200);
   });
 
 });
